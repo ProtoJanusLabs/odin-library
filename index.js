@@ -24,13 +24,41 @@ function addBookToLibrary(event, libraryArray){
     libraryArray.push(bookItem);
 }
 
+// render the table each time a new book is added to the array
+function render(mainBody, libraryArray){
+
+    mainBody.innerHTML = '';
+
+    libraryArray.forEach(bookItem => {
+        const bookRow = document.createElement("div");
+        const titleColumn = document.createElement("div")
+        titleColumn.textContent = bookItem.title;
+        const authorColumn = document.createElement("div")
+        authorColumn.textContent = bookItem.author;
+        const pagesColumn = document.createElement("div")
+        pagesColumn.textContent = bookItem.pages;
+        const readColumn = document.createElement("div")
+        readColumn.textContent = bookItem.read;
+        const deleteColumn = document.createElement("div")
+
+        bookRow.appendChild(titleColumn);
+        bookRow.appendChild(authorColumn);
+        bookRow.appendChild(pagesColumn);
+        bookRow.appendChild(readColumn);
+        bookRow.appendChild(deleteColumn);
+
+        mainBody.appendChild(bookRow);
+    })
+}
+
 const myLibrary = [];
+const mainContent = document.getElementById("mainContent");
 
 const submitButton = document.getElementById("submitButton");
 submitButton.addEventListener("click", function(event){
     event.preventDefault();
     addBookToLibrary(event ,myLibrary)
-    console.log(myLibrary);
+    render(mainContent, myLibrary);
 })
 
 const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, "not read yet");
