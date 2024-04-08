@@ -12,15 +12,14 @@ function Book(title, author, pages, read, id){
 }
 
 // takes in an array to store the objects, and an event from a form to get the data to create new books
-function addBookToLibrary(event, libraryArray, id){
-    let bookItem;
+function addBookToLibrary(libraryArray, id){
+    // gets the values from the form
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const pages = document.getElementById('pages').value;
+    const read = document.getElementById('read').checked ? 'Has Read' : 'Has Not Read';
 
-    // if the has read is true or false, change the read property as needed
-    if(event.target.form[3].checked === true){
-        bookItem = new Book(event.target.form[0].value, event.target.form[1].value, event.target.form[2].value, "Has Read", id);
-    }else{
-        bookItem = new Book(event.target.form[0].value, event.target.form[1].value, event.target.form[2].value, "Has Not Read", id);
-    }
+    const bookItem = new Book(title, author, pages, read, id);
 
     libraryArray.push(bookItem);
 }
@@ -32,7 +31,6 @@ function deleteBookAndRow(bookRow, libraryArray, id){
             libraryArray.splice(index, 1);
         }
     });
-    console.log(libraryArray);
 }
 
 
@@ -79,10 +77,6 @@ function render(bookTable, libraryArray){
         deleteColumn.classList.add("deleteColumn");
         deleteColumn.textContent = "DELETE";
 
-        bookRow.addEventListener("click", () => {
-            console.log(libraryArray);
-        })
-
         deleteColumn.addEventListener("click", function (){
             deleteBookAndRow(bookRow, libraryArray, bookItem.id);
         });
@@ -101,14 +95,11 @@ let id = 1;
 const myLibrary = [];
 const bookTable = document.getElementById("bookTable");
 
-const submitButton = document.getElementById("submitButton");
-submitButton.addEventListener("onsubmit", function(event){
+const form = document.querySelector("form");
+form.addEventListener("submit", function(event){
     event.preventDefault();
-    addBookToLibrary(event ,myLibrary, id)
+    addBookToLibrary(myLibrary, id)
     render(bookTable, myLibrary, id);
 
     id++;
 })
-
-const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, "not read yet");
-theHobbit.info();
