@@ -1,0 +1,92 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #363636;
+    color: white;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+#mainContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    width: max-content;
+}
+
+#bookTable {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.headerRow {
+    display: flex;
+    justify-content: space-between;
+    font-size: 19px;
+    background-color: #232323;
+    padding: 25px 5px;
+    font-weight: bold;
+    width: 100%;
+    div{
+        max-width: 80px;
+        width: 100%;
+    }
+}
+
+.bookRow {
+    width: 100%;
+    gap: 10px;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    padding: 20px 5px;
+
+    div{
+        max-width: 80px;
+        width: 100%;
+        word-wrap: break-word;
+    }
+}
+
+.deleteColumn {
+    background-color: #1b1b1b;
+    padding: 10px 5px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.deleteColumn:hover {
+    background-color: #434343;
+}
+
+form {
+    font-weight: bold;
+}
+
+#submitButton {
+    background-color: #1b1b1b;
+    padding: 10px 5px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    color: white;
+}
+
+#submitButton:hover {
+    background-color: #434343;
+}
+
+.bookRow:nth-child(odd) {
+    background-color: #515151;
+}
+.bookRow:nth-child(even) {
+    background-color: #292929;
+}

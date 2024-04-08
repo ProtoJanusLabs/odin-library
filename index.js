@@ -38,9 +38,30 @@ function deleteBookAndRow(bookRow, libraryArray, id){
 
 
 // render the table each time a new book is added to the array
-function render(mainBody, libraryArray){
+function render(bookTable, libraryArray){
 
-    mainBody.innerHTML = '';
+    bookTable.innerHTML = '';
+
+    const headerRow = document.createElement('div');
+    headerRow.classList.add('headerRow');
+    const headerTitle = document.createElement('div');
+    headerTitle.textContent = "Title";
+    const headerAuthor = document.createElement('div');
+    headerAuthor.textContent = "Author"
+    const headerPages = document.createElement('div');
+    headerPages.textContent = "Pages"
+    const headerHasRead = document.createElement('div');
+    headerHasRead.textContent = "Has Read"
+    const headerDelete = document.createElement('div');
+    headerDelete.textContent = "Delete"
+
+    headerRow.appendChild(headerTitle);
+    headerRow.appendChild(headerAuthor);
+    headerRow.appendChild(headerPages);
+    headerRow.appendChild(headerHasRead);
+    headerRow.appendChild(headerDelete);
+
+    bookTable.append(headerRow);
 
     libraryArray.forEach(bookItem => {
         const bookRow = document.createElement("div");
@@ -72,19 +93,19 @@ function render(mainBody, libraryArray){
         bookRow.appendChild(readColumn);
         bookRow.appendChild(deleteColumn);
 
-        mainBody.appendChild(bookRow, libraryArray);
+        bookTable.appendChild(bookRow, libraryArray);
     })
 }
 
 let id = 1;
 const myLibrary = [];
-const mainContent = document.getElementById("mainContent");
+const bookTable = document.getElementById("bookTable");
 
 const submitButton = document.getElementById("submitButton");
 submitButton.addEventListener("click", function(event){
     event.preventDefault();
     addBookToLibrary(event ,myLibrary, id)
-    render(mainContent, myLibrary, id);
+    render(bookTable, myLibrary, id);
 
     id++;
 })
