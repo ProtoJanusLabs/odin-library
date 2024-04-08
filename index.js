@@ -102,7 +102,7 @@ const myLibrary = [];
 const bookTable = document.getElementById("bookTable");
 
 const submitButton = document.getElementById("submitButton");
-submitButton.addEventListener("click", function(event){
+submitButton.addEventListener("onsubmit", function(event){
     event.preventDefault();
     addBookToLibrary(event ,myLibrary, id)
     render(bookTable, myLibrary, id);
